@@ -90,8 +90,6 @@ class UniversityController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             
-            $entity->setCreatedAt(new \DateTime());
-            $entity->setUpdatedAt(new \DateTime());
             $entity->setSlug(new Slug($entity->getName()));
             
             $em->persist($entity);
