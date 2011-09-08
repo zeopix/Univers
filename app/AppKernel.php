@@ -18,8 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
-            new Iga\RssBundle\IgaRssBundle(),
-//            new Iga\NewsBundle\IgaNewsBundle(),
             new Iga\BootstrapBundle\IgaBootstrapBundle(),
             new Iga\UniverseBundle\IgaUniverseBundle(),
         );
