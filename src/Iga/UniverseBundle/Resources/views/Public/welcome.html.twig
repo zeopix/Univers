@@ -21,7 +21,7 @@
         <div class="span5">
           <h2>{{ 'welcome.block.title'|trans([], 'IgaUniverseBundle') }}</h2>
           <p>{{ 'welcome.block.description'|trans([], 'IgaUniverseBundle') }}</p>
-          <p><a class="btn" href="#">{{ 'welcome.block.button'|trans([], 'IgaUniverseBundle') }}</a></p>
+          <p><a class="btn" href="{{ path('fos_user_registration_register') }}">{{ 'welcome.block.button'|trans([], 'IgaUniverseBundle') }}</a></p>
         </div>
       </div>
 {% endblock %}
