@@ -1,0 +1,50 @@
+{% extends 'IgaUniverseBundle:Public:layout.html.twig' %}
+{% block content %}
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+		<div class="row">
+			<div class="span4">
+				<h3>Novedades</h3>
+				<h3>Usuarios</h3>
+				<h3>Grupos de estudiox</h3>
+			</div>
+        
+			<div class="span12">
+				<p class="right"><a class="btn small back" href="{{ path('career') }}">{{ 'career.show.back'|trans([], 'IgaUniverseBundle') }}</a></p>
+				
+				<h3>{{ 'career.show.title'|trans([], 'IgaUniverseBundle') }}</h3>
+
+				<ul id="careers">
+    			{% for entity in entities %}
+    				<li class="alert-message">
+        				<p class="left"><img src="{{ asset('bundles/igauniverse/images/noimage.png') }}" width="50px" height="50px"></p>
+        				<p class="left">
+	        				<a class="subjecttitle" href="{{ path('subject_show', { 'career' : active, 'subject': entity.slug }) }}">{{ entity.name }}</a>
+						</p>
+						<p class="right">
+							<a class="btn primary" href="{{ path('subject_show', { 'career' : active, 'subject': entity.slug }) }}">Seguir</a>
+						</p>
+						<div style="clear:both"></div>
+					</li>
+    			{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	{% if is_granted('ROLE_MODERATOR_CAREER') %}
+		
+		<div class="hero-unit" style="padding: 5px; padding-left: 30px;">
+		<h3>Añadir asignatura:</h3>
+		<form action="{{ path('subject_create', { 'slug' : active }) }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form.name, { 'attr' : { 'placeholder' : 'Nombre' }}) }}
+		{{ form_widget(form.career) }}
+    	{{ form_widget(form.season, { 'attr' : { 'placeholder' : 'Semestre' , 'class' : 'short' }}) }}
+    	{{ form_widget(form.credits, { 'attr' : { 'placeholder' : 'Creditos' , 'class' : 'short' }}) }}
+    	{{ form_rest(form) }}	
+        	<button type="submit" class="btn primary">Añadir</button>
+		</form>
+        </div>
+	{% endif %}
+        
+{% endblock %}

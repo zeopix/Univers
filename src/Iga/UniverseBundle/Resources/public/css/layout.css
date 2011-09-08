@@ -1,0 +1,24 @@
+/* AUX */
+p.left { float:left; margin-left: 10px; }
+p.right { float:right }
+
+.breadcrumb { float:right; margin: 5px;}
+
+.hero-unit { padding:0px;}
+.hero-unit .row .span12 .back { margin: 5px; }
+
+
+/* Form */
+form#login { margin-top: 30px; }
+form#login input[type=text] { margin-left: 120px; height: 26px; }
+form#login input[type=password] { margin-left: 20px; height: 26px; }
+form#login a.btn { margin-left: 10px; }
+form input[type=text].short { width: 60px; }
+/* Careers */
+ul#careers { list-style-type: none; }
+
+ul#careers li { padding: 10px; margin-top: 4px; }
+
+ul#careers li a.title{ color: #333; font-size: 22px; text-shadow: 1px 1px 0px white; }
+ul#careers li a.subjecttitle{ color: #333; font-size: 18px; text-shadow: 1px 1px 0px white; }
+

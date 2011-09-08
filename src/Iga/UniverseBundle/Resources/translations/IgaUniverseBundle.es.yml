@@ -1,0 +1,23 @@
+#Messages
+welcome.message: Bienvenido a Univers!
+welcome.description: Univers es un punto virtual de reunión para estudiantes. El objetivo es compartir recursos académicos y crear grupos de estudio virtuales.
+
+
+welcome.block.title: ¿No tienes cuenta?
+welcome.block.description: Para garantizar el buen funcionamiento de Univers durante la fase de desarrollo, solo se podrá acceder al portal a través de invitación. Puedes solicitar una aquí.
+welcome.block.button: Solicitar Invitación
+
+#Form
+form.email: Correo electrónico
+form.password: Contraseña
+form.login: Acceder
+
+
+#Career messages
+career.index.title: Escoge tu carrera universitaria
+career.show.title: Lista de Asignaturas
+career.show.back: Volver atrás
+
+#subject messages
+subject.show.title: Archivos para la asignatura
+subject.show.back: Volver atrás

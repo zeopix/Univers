@@ -1,0 +1,38 @@
+{% extends 'IgaNewsBundle::layout.html.twig' %}
+{% block extra %}<script language="javascript" src="{{ asset('bundles/iganews/js/admin.js') }}"></script>{% endblock %}
+{% block content %}
+
+
+<div id="results">
+<h3>Proveedores</h3>
+<br>
+{% for entity in entities %}
+<div class="item">
+
+	<div class="title">{{ entity.title }}</div>
+		
+	<div id="vendor_{{ entity.id }}">
+	
+		
+		<div style="float:left; margin: 15px;">
+					<a href="{{ path('crawlVendor', { 'vendor': entity.id }) }}"><img height="30px" src="{{ entity.logo }}"></a>
+		</div>
+		
+		<div style="float:right; margin: 15px;">
+					<a class="clean-gray" href="{{ path('vendor_edit', { 'id': entity.id }) }}">Editar</a>
+		</div>
+		
+		<div style="clear:both"></div>
+	</div>
+	
+	<div class="source"><a href="{{ entity.url }}"><img src="{{ entity.favicon }}" height="14px"> {{ entity.url }}</a></div>
+	<div style="clear:both"></div>
+</div>
+{% endfor %}
+
+
+<a class="clean-gray" style="margin:10px;" href="{{ path('vendor_new') }}">Añadir Proveedor</a>
+</div>
+
+
+{% endblock %}

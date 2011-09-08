@@ -1,0 +1,15 @@
+<div id="topbar">
+{% if is_granted('ROLE_USER') %}
+    <a href="{{ path('fos_user_security_logout') }}">Salír</a>
+{% else %}
+	<a href="{{ path('fos_user_registration_register') }}">Date de alta</a> -
+	<a href="{{ path('fos_user_security_login') }}">Identifícate</a>
+{% endif %}
+
+{% if is_granted('ROLE_ADMIN') %} -
+    <a href="{{ path('categories') }}">Administrar Categorías</a> -
+	<a href="{{ path('vendors') }}">Administrar Proveedores</a> -
+	<a href="{{ path('crawl') }}">Administrar Fuentes</a>
+{% endif %}
+	
+</div>

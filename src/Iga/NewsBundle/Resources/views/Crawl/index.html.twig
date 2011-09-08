@@ -1,0 +1,51 @@
+{% extends 'IgaNewsBundle::layout.html.twig' %}
+{% block extra %}<script language="javascript" src="{{ asset('bundles/iganews/js/admin.js') }}"></script>{% endblock %}
+
+{% block content %}
+
+<div id="results">
+<div class="item">
+
+	<div class="title">Todas las fuentes</div>
+		
+	<div id="allsources">
+	
+		<button id="crawlAll" class="clean-gray" href='#' style="float:left;">Actualizar todas</button> 
+		<div style="float:left;">
+			(No interrumpir)
+			<br>
+			<p class="crawled">0</p> de <p class="count">x</p> fuentes</p>
+		</div>
+		
+		<div style="clear:both"></div>
+	</div>
+	
+</div>
+{% for source in sources %}
+<div class="item">
+
+	<div class="title">{{ source.title }}</div>
+		
+	<div id="source_{{ source.id }}">
+	
+		<button class="scan clean-gray" source="{{ source.id }}" href='{{ path('crawlSource',{ 'source' : source.id }) }}' style="float:left;">Actualizar</button> 
+		<div style="float:left;">
+			<a href="{{ source.url }}" target="_blank">{{ source.url }}</a>
+			<br>
+			Escaneado en <p class="crawled">{{ source.crawledAt|date }}</p> con un total de <p class="count">{{ source.getItemsCount() }}</p> artículos</p>
+		</div>
+		
+		<div style="clear:both"></div>
+	</div>
+	
+	<div class="source"><a href="{{ source.vendor.url }}"><img src="{{ source.vendor.favicon }}" height="14px"> {{ source.vendor.title }}</a></div>
+	<div class="timestamp">Ultima noticia: {{ source.updatedAt|date }}</div>
+	<div style="clear:both"></div>
+</div>
+{% endfor %}
+
+
+<a class="clean-gray" style="margin:10px;" href="{% if vendor %}{{ path('sources_new', { 'vendor' : vendor }) }}{% else %}{{ path('sources_new', { 'vendor' : '1'}) }}{% endif %}">Añadir Fuente</a>
+</div>
+ 
+{% endblock %}

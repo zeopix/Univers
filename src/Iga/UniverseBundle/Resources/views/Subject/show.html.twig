@@ -1,0 +1,64 @@
+{% extends 'IgaUniverseBundle:Public:layout.html.twig' %}
+{% block content %}
+	
+	<p class="breadcrumb"><a class="btn small back" href="#">{{ active.subjectName }}</a></p>
+	<p class="breadcrumb"><a class="btn small back" href="{{ path('career_subjects',{ 'slug' : active.career }) }}">{{ active.careerName }}</a></p>
+	<p class="breadcrumb"><a class="btn small back" href="{{ path('career') }}">Home</a></p>
+				
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+		<div class="row">
+			<div class="span4">
+				<h3>Preguntas y Respuestas</h3>
+				<h3>Usuarios</h3>
+			</div>
+        
+			<div class="span12">
+				
+				<h3>{{ 'subject.show.title'|trans([], 'IgaUniverseBundle') }}</h3>
+
+				{% for Collection in SortedEntities %}
+				<table class="zebra-striped">
+				<tr>
+					<td><b>{{ Collection.type.name }}</b></td>
+					<td>Título</td>
+					<td>Tipo</td>
+					<td>Subido</td>
+					<td></td>
+				</tr>
+    			{% for entity in Collection.entities %}
+    			<tr>
+    				<td>[{{ entity.extension|upper }}]</td>
+        			
+        			<td><a class="subjecttitle" href="{{ asset(entity.getWebPath) }}">{{ entity.name }}</a></td>
+					<td>{{ entity.type }}</a></td>
+					<td>{{ entity.uploader.username }}</td>
+					<td><a class="btn success" href="{{ asset(entity.getWebPath) }}">Descargar</a></td>
+
+				</tr>
+    			{% endfor %}
+				</table>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	
+		{% if app.session.hasFlash('error') %}
+		      <div class="alert-message error"> 
+        <a class="close" href="#">&times;</a> 
+        <p><strong>Error guardando formulario:</strong> {{ app.session.flash('error') }}</p> 
+      </div> 
+		{% endif %}
+		<div class="hero-unit" style=" margin-top: 3px; padding: 5px; padding-left: 30px;">
+		<h3>Añadir archivo:</h3>
+		<form action="{{ path('file_create', { 'career' : active.career, 'subject': active.subject }) }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form.name, { 'attr' : { 'placeholder' : 'Nombre' }}) }}
+    	{{ form_widget(form.description, { 'attr' : { 'placeholder' : 'Descripción' }}) }}
+    	{{ form_widget(form.type) }}
+    	{{ form_widget(form.file) }}
+    	{{ form_rest(form) }}	
+        	<button type="submit" class="btn primary">Añadir</button>
+		</form>
+        </div>
+        
+{% endblock %}

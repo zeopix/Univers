@@ -1,0 +1,33 @@
+{% extends 'IgaNewsBundle::layout.html.twig' %}
+{% block extra %}<script language="javascript" src="{{ asset('bundles/iganews/js/admin.js') }}"></script>{% endblock %}
+{% block content %}
+<br>
+<div style="text-align: left; width: 560px; margin: auto;">
+<h3>Categorías</h3>
+
+<ul class="categorias root">
+    {% for entity in entities %}
+
+            
+            <li><a href="{{ path('categories_edit', {'id' : entity.id }) }}">{{ entity.title }}</a></li>
+			<li>
+				<ul class="categorias children">
+				{% for category in entity.children %}
+					<li>[ <a class="categoriesdelete" href="{{ path('categories_delete' , { 'id' : category.id }) }}" eid="{{ category.id }}">X</a> ] {{ category.title }}</li>
+				{% endfor %}
+					<li class="insert">
+						<a class="addsubcategory" href="#">Añadir subcategoría</a>
+						<div style="display:none">
+							<form><input type="text" name="title" style="float:left" value=""><input type="hidden" name="parent" value="{{ entity.id }}"><a href="#"  style="float:left; margin-left: 10px;" url="{{ path('categories_create') }}">Añadir</a></form>
+							<div style="clear:both"></div>
+						</div>
+					</li>
+				</ul>
+			</li>
+
+    {% endfor %}
+</ul>
+<br>
+<a class="clean-gray" href="{{ path('categories_new') }}">Añadir Categoría</a>
+</div>
+{% endblock %}

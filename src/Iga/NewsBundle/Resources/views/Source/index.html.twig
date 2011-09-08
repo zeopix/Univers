@@ -1,0 +1,56 @@
+{% extends 'IgaNewsBundle::layout.html.twig' %}
+{% block content %}<h1>Source list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Slug</th>
+            <th>Url</th>
+            <th>Publicurl</th>
+            <th>Favicon</th>
+            <th>Createdat</th>
+            <th>Updatedat</th>
+            <th>Crawledat</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('sources_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.type }}</td>
+            <td>{{ entity.slug }}</td>
+            <td>{{ entity.url }}</td>
+            <td>{{ entity.publicurl }}</td>
+            <td>{{ entity.favicon }}</td>
+            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+            <td>{{ entity.crawledAt|date('Y-m-d H:i:s') }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('sources_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('sources_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('sources_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+
+{% endblock %}

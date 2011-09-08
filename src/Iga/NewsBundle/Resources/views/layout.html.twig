@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0018)http://ebirdr.com/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="description" content="Buscador de noticias.">
+<meta name="language" content="es">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="news, noticias, actualidad, periodico, informacion, mundo, nacional, deportes, economia, interes, opinion">
+    <title>noticiator</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+    
+    <link rel="shortcut icon" href="http://ebirdr.com/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/iganews/css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/iganews/css/buttons.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/iganews/css/gradients.css') }}">
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/iganews/css/jquery-ui.css') }}">
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/iganews/css/jquery.lightbox.css') }}">
+
+
+<link rel="stylesheet" typ  e="text/css" media="screen" href="{{ asset('bundles/iganews/css/main.css') }}">
+
+    <script type="text/javascript" src="{{ asset('bundles/iganews/js/jquery.min.js') }}"></script>
+  
+      <!--
+  <script type="text/javascript" src="{{ asset('bundles/iganews/js/cufon-yui.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/iganews/js/times.font.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/iganews/js/cuf_run.js') }}"></script>
+-->
+<script type="text/javascript" src="{{ asset('bundles/iganews/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/iganews/js/jquery.lightbox.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/iganews/js/application.js') }}"></script>
+{% block extra %}{% endblock %}
+  </head>
+  <body>
+ 
+    {% if categories is defined %}
+    {% if search is defined %}
+    {% else %}
+    <!--<div style="position:absolute; margin:0px;">
+    -->
+    	<div id="leftsidebar">
+    		
+    		<ul id="menu">
+    			<li{% if active is defined %}{% if 1 in active %} class="active"{% endif %}{% endif %}><a href="{{ path('home') }}">Portada</a></li>
+    	
+    		{% for category in categories %}
+    			<li{% if category.id in active %} class="active"{% endif %}><a href="{{ path('category',{ 'category' : category.slug })}}">{{ category.title }}</a></li>
+    		{% endfor %}
+    		</ul>
+    		
+    	</div>
+    <!--
+    </div>
+    -->
+    {% endif %}
+    {% endif %}
+    <div id="home">
+
+		{% include 'IgaNewsBundle:Site:topbar.html.twig' %}
+
+  
+
+<div class="logo"><img height="60px" src="{{ asset('bundles/iganews/images/paper.png') }}"><a href="{{ path('home') }}">pásalo.at</a></div>
+
+{% block content %}
+
+<br style="margin-top: 20px;">
+        {% for key, message in app.session.getFlashes() %}
+        <div class="{{ key }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+        {% endfor %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+{% endblock %}
+
+      <div id="ft">
+        <p id="ft-nav">
+      <a href="/about">Sobre Pásalo</a>
+      <a href="/contact">Contacto</a>
+    <a href="/tree">Explorar Medios</a>
+</p>
+<p id="ft-copy">
+  <small>© 2011 Pásalo.at
+          <a href="{{ path('fos_user_security_login') }}">administración</a>        <br>Powered by: <a href="http://many-few.com/" target="_blank">Many Few</a>
+  </small>
+</p>
+
+      </div>
+    </div>
+  
+
+<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1; top: 0px; left: 0px; display: none; "></ul><div id="imacros-bookmark-div" style="display: none; "><textarea id="imacros-macro-container"></textarea></div></body></html>

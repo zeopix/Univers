@@ -1,0 +1,27 @@
+{% extends 'IgaUniverseBundle:Public:layout.html.twig' %}
+{% block content %}
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit" style="padding: 10px">
+        <h1>{{ 'welcome.message'|trans([], 'IgaUniverseBundle') }}</h1>
+        <p>{{ 'welcome.description'|trans([], 'IgaUniverseBundle') }}</p>
+        <p>
+        
+        	<form action="{{ path("fos_user_security_check") }}" method="post" id="login">
+        	
+        		<input class="large" type="text" name="_username" placeholder="{{ 'form.email'|trans([], 'IgaUniverseBundle') }}">
+        		<input class="large" type="password" name="_password" placeholder="{{ 'form.password'|trans([], 'IgaUniverseBundle') }}">
+        		<input type="submit" class="btn primary" value="{{ 'form.login'|trans([], 'IgaUniverseBundle') }}">
+        	
+        	</form></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+
+        <div class="span5">
+          <h2>{{ 'welcome.block.title'|trans([], 'IgaUniverseBundle') }}</h2>
+          <p>{{ 'welcome.block.description'|trans([], 'IgaUniverseBundle') }}</p>
+          <p><a class="btn" href="#">{{ 'welcome.block.button'|trans([], 'IgaUniverseBundle') }}</a></p>
+        </div>
+      </div>
+{% endblock %}
