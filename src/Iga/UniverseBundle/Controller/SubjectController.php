@@ -53,62 +53,7 @@ class SubjectController extends Controller
             'active' => $slug
         	));
     }
-    /**
-     *
-     * @Route("/{career}/{subject}", name="subject_show")
-     */
-    public function subjectShowAction($career,$subject)
-    {
-    
-    	//load context
-    	$em = $this->getDoctrine()->getEntityManager();
-        
-		$career = $em->getRepository('IgaUniverseBundle:Career')->findOneBySlug($career);
-		$subject = $em->createQuery('SELECT s FROM IgaUniverseBundle:Subject s WHERE s.career = :career AND s.slug = :slug')
-			->setParameter('career',$career->getId())
-			->setParameter('slug',$subject)
-			->getSingleResult();
-			
-		//list filetype's
-		$fts = $em->getRepository('IgaUniverseBundle:FileType')->findAll();
-		
-		$entities = Array();
-		
-		foreach($fts as $filetype){
-			$slug = $filetype->getSlug();
-			$entities[] = Array(
-				'type' => $filetype,
-				'entities' => $em->createQuery('SELECT f FROM IgaUniverseBundle:File f WHERE f.subject = :subject AND f.type = :type')
-								 ->setParameter('subject',$subject->getId())
-								 ->setParameter('type',$filetype->getId())
-								 ->getResult()
-				);	
-		}
-		
-		//list files
-        //$entities = $em->getRepository('IgaUniverseBundle:File')->findBy(Array('subject'=>$subject->getId()));
-        
-        //add file
-        $entity = new File();
-        $entity->setSubject($subject);
-        $form   = $this->createForm(new FileType(), $entity);
-
-		
-
-        return $this->render('IgaUniverseBundle:Subject:show.html.twig',array(
-        	'SortedEntities' => $entities,
-            'entity' => $entity,
-            'form'   => $form->createView(),
-            'active' => Array(
-            	'career' => $career->getSlug(),
-            	'careerName' => $career->getName(),
-            	'subject' => $subject->getSlug(),
-            	'subjectName' => $subject->getName()
-            	)
-            
-        	));
-    }
-    
+   
     
     /**
      * Creates a new Subject entity.
@@ -198,6 +143,63 @@ class SubjectController extends Controller
 
 
     }
+    
+     /**
+     *
+     * @Route("/{career}/{subject}", name="subject_show")
+     */
+    public function subjectShowAction($career,$subject)
+    {
+    
+    	//load context
+    	$em = $this->getDoctrine()->getEntityManager();
+        
+		$career = $em->getRepository('IgaUniverseBundle:Career')->findOneBySlug($career);
+		$subject = $em->createQuery('SELECT s FROM IgaUniverseBundle:Subject s WHERE s.career = :career AND s.slug = :slug')
+			->setParameter('career',$career->getId())
+			->setParameter('slug',$subject)
+			->getSingleResult();
+			
+		//list filetype's
+		$fts = $em->getRepository('IgaUniverseBundle:FileType')->findAll();
+		
+		$entities = Array();
+		
+		foreach($fts as $filetype){
+			$slug = $filetype->getSlug();
+			$entities[] = Array(
+				'type' => $filetype,
+				'entities' => $em->createQuery('SELECT f FROM IgaUniverseBundle:File f WHERE f.subject = :subject AND f.type = :type')
+								 ->setParameter('subject',$subject->getId())
+								 ->setParameter('type',$filetype->getId())
+								 ->getResult()
+				);	
+		}
+		
+		//list files
+        //$entities = $em->getRepository('IgaUniverseBundle:File')->findBy(Array('subject'=>$subject->getId()));
+        
+        //add file
+        $entity = new File();
+        $entity->setSubject($subject);
+        $form   = $this->createForm(new FileType(), $entity);
+
+		
+
+        return $this->render('IgaUniverseBundle:Subject:show.html.twig',array(
+        	'SortedEntities' => $entities,
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'active' => Array(
+            	'career' => $career->getSlug(),
+            	'careerName' => $career->getName(),
+            	'subject' => $subject->getSlug(),
+            	'subjectName' => $subject->getName()
+            	)
+            
+        	));
+    }
+    
 
     
 }
