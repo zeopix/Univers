@@ -14,6 +14,7 @@ class SubjectType extends AbstractType
             ->add('name')
             ->add('credits','text')
             ->add('career')
+            ->add('university')
         ;
     }
 

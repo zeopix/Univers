@@ -63,25 +63,23 @@ class SubjectController extends Controller
     /**
      * Creates a new Subject entity.
      *
-     * @Route("/{slug}/subjectcreate", name="subject_create")
+     * @Route("/subjectcreate", name="subject_create")
      * @Method("post")
      */
-    public function createAction($slug)
+    public function createAction()
     {
         $entity  = new Subject();
         $request = $this->getRequest();
         $form    = $this->createForm(new SubjectType(), $entity);
         $form->bindRequest($request);
 
+		$slug = $this->getSession()->getRequest()->get('slug');
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            
-			$career = $em->getRepository('IgaUniverseBundle:Career')->findOneBySlug($slug);
-            
+                        
             $entity->setCreatedAt(new \DateTime());
             $entity->setUpdatedAt(new \DateTime());
             $entity->setSlug(new Slug($entity->getName()));
-            $entity->setUniversity($career->getUniversity());
             
             $em->persist($entity);
             $em->flush();

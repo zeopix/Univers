@@ -39,8 +39,10 @@
 		<form action="{{ path('subject_create', { 'slug' : active }) }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form.name, { 'attr' : { 'placeholder' : 'Nombre' }}) }}
 		{{ form_widget(form.career) }}
+		{{ form_widget(form.university) }}
     	{{ form_widget(form.season, { 'attr' : { 'placeholder' : 'Semestre' , 'class' : 'short' }}) }}
     	{{ form_widget(form.credits, { 'attr' : { 'placeholder' : 'Creditos' , 'class' : 'short' }}) }}
+
     	{{ form_rest(form) }}	
         	<button type="submit" class="btn primary">Añadir</button>
 		</form>
