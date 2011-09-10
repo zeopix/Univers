@@ -25,6 +25,36 @@ class SubjectController extends Controller
 {
     /**
      *
+     * @Route("/assignatures", name="assignatures")
+     */
+    public function assignaturesAction()
+    {
+		//list careers
+        $em = $this->getDoctrine()->getEntityManager();
+
+		//$career = $em->getRepository('IgaUniverseBundle:Career')->findOneBySlug($slug);
+
+		$entities = $em->createQuery('SELECT s FROM IgaUniverseBundle:Subject s')
+			->getResult();
+
+        //$entities = $em->getRepository('IgaUniverseBundle:Subject')->findBy(Array('career'=>$career->getId()));
+        
+        //add subject
+        $entity = new Subject();
+        //$entity->setCareer($career);
+        $form   = $this->createForm(new SubjectType(), $entity);
+
+
+        return $this->render('IgaUniverseBundle:Subject:assignatures.html.twig',array(
+        	'entities' => $entities,
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'active' => ''
+        	));
+    }
+   
+    /**
+     *
      * @Route("/{slug}", name="career_subjects")
      */
     public function careerSubjectsAction($slug)
