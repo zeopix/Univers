@@ -53,37 +53,12 @@ class SubjectController extends Controller
         	));
     }
    
-    /**
-     *
-     * @Route("/{slug}", name="career_subjects")
-     */
-    public function careerSubjectsAction($slug)
-    {
-		//list careers
-        $em = $this->getDoctrine()->getEntityManager();
-
-		$career = $em->getRepository('IgaUniverseBundle:Career')->findOneBySlug($slug);
-
-		$entities = $em->createQuery('SELECT s FROM IgaUniverseBundle:Subject s WHERE s.career = :career')
-			->setParameter('career',$career->getId())
-			->getResult();
-
-        //$entities = $em->getRepository('IgaUniverseBundle:Subject')->findBy(Array('career'=>$career->getId()));
-        
-        //add subject
-        $entity = new Subject();
-        $entity->setCareer($career);
-        $form   = $this->createForm(new SubjectType(), $entity);
-
-
-        return $this->render('IgaUniverseBundle:Subject:career.html.twig',array(
-        	'entities' => $entities,
-            'entity' => $entity,
-            'form'   => $form->createView(),
-            'active' => $slug
-        	));
-    }
-   
+   /**
+   * @Route("/{subjectid}", name="followSubject")
+   */
+   public function followSubjectAction($subjectid){
+   	return new Response("null");
+   }
     
     /**
      * Creates a new Subject entity.
@@ -123,7 +98,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Creates a new Subject entity.
+     * Creates a new File entity.
      *
      * @Route("/{career}/{subject}/sendfile", name="file_create")
      * @Method("post")

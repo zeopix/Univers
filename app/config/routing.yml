@@ -28,16 +28,39 @@ fos_user_change_password:
     prefix: /change-password
     
 #IgaIgaNewsBundle:
-#    resource: "@IgaNewsBundle/Controller/"
+#    resource: "@IgaNewsBundle/Controller/UniversityController.ph"
 #    type:     annotation
 #    prefix:   /
 
-IgaUniverseBundle:
-    resource: "@IgaUniverseBundle/Controller/"
+UniversityController:
+    resource: "@IgaUniverseBundle/Controller/UniversityController.php"
     type:     annotation
     prefix:   /
 
-IgaBootstrapBundle:
-    resource: "@IgaBootstrapBundle/Controller/"
+GradeController:
+    resource: "@IgaUniverseBundle/Controller/GradeController.php"
     type:     annotation
     prefix:   /
+
+Career:
+    resource: "@IgaUniverseBundle/Controller/CareerController.php"
+    type:     annotation
+    prefix:   /
+
+FileTypeController:
+    resource: "@IgaUniverseBundle/Controller/FileTypeController.php"
+    type:     annotation
+    prefix:   /
+
+
+DefaultController:
+    resource: "@IgaUniverseBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /
+  
+
+SubjectController:
+    resource: "@IgaUniverseBundle/Controller/SubjectController.php"
+    type:     annotation
+    prefix:   /
+    
