@@ -24,7 +24,8 @@ class DefaultController extends Controller
             return $this->render('IgaUniverseBundle:Public:welcome.html.twig');
         }
 		    	
-        return $this->redirect($this->generateUrl('career'));
+        //return $this->redirect($this->generateUrl('career'));
+        return $this->redirect($this->generateUrl('assignatures'));
     }
     
     /**
