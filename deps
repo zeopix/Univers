@@ -65,3 +65,12 @@
 [IgaBootstrapBundle]
     git=git://github.com/zeopix/BootstrapBundle.git
     target=../src/Iga/BootstrapBundle
+
+[FOSFacebookBundle]
+    git=git://github.com/FriendsOfSymfony/FOSFacebookBundle.git
+    target=/bundles/FOS/FacebookBundle
+
+[FacebookSDK]
+    git=git://github.com/facebook/php-sdk.git
+    target=/facebook
+
